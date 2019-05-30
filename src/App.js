@@ -23,9 +23,6 @@ const todosArray = [
     id: 152858,
     completed: false
   },
-  {
-    taskName: "poop",
-  }
 ];
 
 class App extends React.Component {
