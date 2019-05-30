@@ -40,23 +40,26 @@ class App extends React.Component {
   addTodoObject = (newTaskName) => {
     const newTodoObject = {
       taskName: newTaskName,
-      id: 123,
+      id: Date.now(),
       completed: false
     };
-    this.setState({
+    this.setState( prevState => {
+      return {
+        tasks: [...prevState.tasks, newTodoObject]
+      };
       //make a new array with added task 
       //makes a new array plus a new todoObject to replace old array in State
-      tasks: [...this.state.tasks, newTodoObject]
-    })
-  }
+    });
+  };
+
 //toggle items function
   //pass down as a prop to todo components
 //filter items function 
   toggleItem = (id) => {
-    this.setState(() => {
+    this.setState((prevState) => {
       console.log("inside toggleItem")
       return {
-        tasks: this.state.tasks.map(singleTask => {
+        tasks: prevState.tasks.map(singleTask => {
           if (singleTask.id === id) {
             return {
               ...singleTask,

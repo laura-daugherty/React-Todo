@@ -4,6 +4,6 @@
 }
 
 .todoItem.completed {
-  text-decoration: underline;
-  background-color: blue;
+  text-decoration: line-through;
+  background-color:green;
 }

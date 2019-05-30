@@ -9,12 +9,16 @@ class TodoForm extends React.Component {
       };
     
     onInputChange = (event) => {
-        this.setState({taskName: event.target.value})
+        this.setState({
+            taskName: event.target.value})
     }
 
+    onClickButton = e => {
+        e.preventDefault();
+        this.props.onClickButton(this.state.taskName);
+    }
 
     render () {
-    
         return (
             <div>
                 <form>
@@ -25,7 +29,7 @@ class TodoForm extends React.Component {
                     name="Todo"
                     />
                 </form>
-                <button onClick={() => this.props.onClickButton(this.state.taskName)}>Add Todo</button>
+                <button onClick={this.onClickButton}>Add Todo</button>
             </div>
         )
     }
