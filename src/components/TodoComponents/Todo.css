@@ -1,0 +1,9 @@
+.todoItem {
+  background-color: red;
+
+}
+
+.todoItem.completed {
+  text-decoration: underline;
+  background-color: blue;
+}

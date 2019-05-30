@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from "./components/TodoComponents/TodoList"
 import TodoForm from "./components/TodoComponents/TodoForm"
+import { isTemplateElement } from '@babel/types';
 
 const todosArray = [
   {
@@ -35,7 +36,7 @@ class App extends React.Component {
       tasks: todosArray,
     }
   };
-
+//add items
   addTodoObject = (newTaskName) => {
     const newTodoObject = {
       taskName: newTaskName,
@@ -48,17 +49,36 @@ class App extends React.Component {
       tasks: [...this.state.tasks, newTodoObject]
     })
   }
-
-  
+//toggle items function
+  //pass down as a prop to todo components
+//filter items function 
+  toggleItem = (id) => {
+    this.setState(() => {
+      console.log("inside toggleItem")
+      return {
+        tasks: this.state.tasks.map(singleTask => {
+          if (singleTask.id === id) {
+            return {
+              ...singleTask,
+              completed: !singleTask.completed
+            };
+          }
+          else {
+            return singleTask;
+          }
+        })
+      }
+      //loop through this.state.tasks - find item clicked on, toggle completed property
+    })
+  };
   render() {
+    console.log(this.state)
     return (
       <div>
         {/* <TodoForm  /> */}
-        <TodoList listOfTasks={this.state.tasks}/>
+        <TodoList listOfTasks={this.state.tasks} toggleItem={this.toggleItem}/>
         <TodoForm onClickButton={this.addTodoObject} stateTaskName={this.state.taskName}/>
       </div>
-
-
     );
   }
 }
