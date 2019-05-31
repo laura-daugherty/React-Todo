@@ -10,13 +10,22 @@ class TodoForm extends React.Component {
     
     onInputChange = (event) => {
         this.setState({
-            taskName: event.target.value})
+            [event.target.name]: event.target.value})
     }
 
     onClickButton = e => {
         e.preventDefault();
         this.props.onClickButton(this.state.taskName);
     }
+
+    onClearClickButton = event => {
+        event.preventDefault();
+        this.props.onClearClickButton();
+    }
+
+
+///////list array.filter/////
+
 
     render () {
         return (
@@ -26,10 +35,11 @@ class TodoForm extends React.Component {
                     placeholder="Todo Item" 
                     onChange={this.onInputChange} 
                     value={this.state.taskName}
-                    name="Todo"
+                    name="taskName"
                     />
                 </form>
                 <button onClick={this.onClickButton}>Add Todo</button>
+                <button onClick={this.onClearClickButton}>Clear Completed</button>
             </div>
         )
     }

@@ -52,6 +52,16 @@ class App extends React.Component {
     });
   };
 
+//remove completed items
+  removeCompleted = () => {
+    this.setState((prevState) => {
+      console.log("inside removeCompleted")
+      return {
+        tasks: prevState.tasks.filter((task) => !task.completed)
+      }
+    })
+  }
+
 //toggle items function
   //pass down as a prop to todo components
 //filter items function 
@@ -79,8 +89,14 @@ class App extends React.Component {
     return (
       <div>
         {/* <TodoForm  /> */}
-        <TodoList listOfTasks={this.state.tasks} toggleItem={this.toggleItem}/>
-        <TodoForm onClickButton={this.addTodoObject} stateTaskName={this.state.taskName}/>
+        <TodoList 
+          listOfTasks={this.state.tasks} 
+          toggleItem={this.toggleItem}/>
+        <TodoForm 
+          onClickButton={this.addTodoObject} 
+          stateTaskName={this.state.taskName}
+          onClearClickButton={this.removeCompleted}
+        />
       </div>
     );
   }
